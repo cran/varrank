@@ -10,7 +10,7 @@
 
 \usage{
 varrank(data.df = NULL, variable.important = NULL, method =
-                 c("battiti", "kwak", "peng", "esteves"), algorithm =
+                 c("battiti", "kwak", "peng", "estevez"), algorithm =
                  c("forward", "backward"),
                  scheme = c("mid", "miq"),
                  discretization.method = NULL, ratio = NULL, n.var =
@@ -20,7 +20,7 @@ varrank(data.df = NULL, variable.important = NULL, method =
 \arguments{
   \item{data.df}{a named data frame with either numeric or factor variables.}
   \item{variable.important}{a list of variables that is the target variables.}
-  \item{method}{the method to be used. See \sQuote{Details}. Default is \code{"esteves"}.}
+  \item{method}{the method to be used. See \sQuote{Details}. Default is \code{"estevez"}.}
   \item{algorithm}{the algorithm scheme to be used. Default is '\code{"forward"}.}
   \item{scheme}{the scheme search to be used. \code{"mid"} and \code{"miq"} stands for the Mutual Information Difference and Quotient schemes, respectively. Those are two ways to combine the relevance and redundancy. They are the two most used mRMRe schemes}
   \item{discretization.method}{a character vector giving the discretization method to use. See \code{\link{discretization}}.}
@@ -48,7 +48,7 @@ Depending of the value method, the value of A and B will be set accordingly to:
 
 \code{peng} defined A=1/|S|. Peng et al. (2005).
 
-\code{esteves} defined A = 1/|S| min(H(f_i), H(f_s)). Estéves et al. (2009).
+\code{estevez} defined A = 1/|S| min(H(f_i), H(f_s)). Estévez et al. (2009).
 
 The search algorithm implemented are a forward search i.e. start with an empty set S and fill in. The the returned list is ranked by decreasing order of relevance. A backward search which start with a full set i.e. all variables except \code{variable.importance} are considered as selected and the returned list is in increasing order of relevance based solely on mutual information estimation. Thus a backward search will only check for relevance and not for redundancy. \code{n.var} is optional if it is not provided, all candidate variables will be ranked.
 }
@@ -65,14 +65,14 @@ data(PimaIndiansDiabetes)
 
 ##forward search for all variables
 varrank(data.df = PimaIndiansDiabetes,
-  method = "esteves",
+  method = "estevez",
   variable.important = "diabetes",
   discretization.method = "sturges",
   algorithm = "forward", scheme = "mid")
 
 ##forward search for 3 variables
 varrank(data.df = PimaIndiansDiabetes,
-  method = "esteves",
+  method = "estevez",
   variable.important = "diabetes",
   discretization.method = "sturges",
   algorithm = "forward",

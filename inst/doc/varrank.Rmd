@@ -49,15 +49,15 @@ Once installed, the *varrank* R package can be loaded using:
 library(varrank)
 ```
 
-Let us start with a ranking example from the *mlbench* R package [@leischmlbench]. The *PimaIndiansDiabetes* dataset contains 768 observations on 9 clinical variables. To run the *varrank()* function, one needs to choose a score function model ("battiti", "kwak", "peng", "esteves"), a discretization method (see discretization for details) and an algorithm scheme ("forward", "backward").
+Let us start with a ranking example from the *mlbench* R package [@leischmlbench]. The *PimaIndiansDiabetes* dataset contains 768 observations on 9 clinical variables. To run the *varrank()* function, one needs to choose a score function model ("battiti", "kwak", "peng", "estevez"), a discretization method (see discretization for details) and an algorithm scheme ("forward", "backward").
 
-For the first search, it is advised to use either "peng" (faster) or "esteves" (more reliable but much slower for large datasets) and, in case the number of variables is large (>100), restrict the "forward" search to "n.var = 100." The progress bar will give you an idea of the remaining run time.
+For the first search, it is advised to use either "peng" (faster) or "estevez" (more reliable but much slower for large datasets) and, in case the number of variables is large (>100), restrict the "forward" search to "n.var = 100." The progress bar will give you an idea of the remaining run time.
 
 ```{r, warning = FALSE, message = FALSE}
 
 data(PimaIndiansDiabetes, package = "mlbench")
 
-varrank.PimaIndiansDiabetes <- varrank(data.df = PimaIndiansDiabetes, method = "esteves", variable.important = "diabetes", discretization.method = "sturges", algorithm = "forward", scheme="mid", verbose = FALSE)
+varrank.PimaIndiansDiabetes <- varrank(data.df = PimaIndiansDiabetes, method = "estevez", variable.important = "diabetes", discretization.method = "sturges", algorithm = "forward", scheme="mid", verbose = FALSE)
 
 summary(varrank.PimaIndiansDiabetes)
 ```
@@ -226,7 +226,7 @@ This equation is called the mRMRe equation. Model names and their corresponding 
 
 3. $\beta={1}/{|\textbf{S}|}$ and $\alpha(f_i,f_s,\textbf{C})=1$, which is named min-redundancy max-relevance (mRMR). This method is called \textit{peng} in varrank and presented in @peng2005feature.
 
-4. $\beta={1}/{|\textbf{S}|}$ and $\alpha(f_i,f_s,\textbf{C})={1}/{\text{min}(\text{H}(f_i),\text{H}(f_s))}$ named Normalized MIFS (NMIFS). This method is called \textit{esteves} in varrank and presented in @estevez2009normalized.
+4. $\beta={1}/{|\textbf{S}|}$ and $\alpha(f_i,f_s,\textbf{C})={1}/{\text{min}(\text{H}(f_i),\text{H}(f_s))}$ named Normalized MIFS (NMIFS). This method is called \textit{estevez} in varrank and presented in @estevez2009normalized.
 
 The two terms on the right-hand side of the definition of the local score function above are local proxies for the relevance and the redundancy, respectively. Redundancy is a penalty included to avoid selecting features highly correlated with previously selected ones. Local proxies are needed because computing the joint MI between high dimensional vectors is computationally expensive. The function $\alpha$ and the parameter $\beta$ attempt to balance both terms to the same scale. In @peng2005feature and @estevez2009normalized, the ratio of comparison is adaptively chosen as $\beta = 1/{|S|}$ to control the second term, which is a cumulative sum and increases quickly as the cardinality of $\textbf{S}$ increases. The function $\alpha$ tends to normalize the right side. One can remark that $0 \leq \text{MI}(f_i;f_s) \leq \min(\text{H}(f_i), \text{H}(f_s))$.
 
@@ -283,7 +283,7 @@ summary(lm(Fertility ~ . , data = swiss))
 Forward *varrank* analysis:
 
 ```{r}
-swiss.varrank <- varrank(data.df = swiss, method = "esteves", variable.important = "Fertility", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
+swiss.varrank <- varrank(data.df = swiss, method = "estevez", variable.important = "Fertility", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 swiss.varrank
 plot(swiss.varrank)
 ```
@@ -302,7 +302,7 @@ summary(fm1 <- lm(Employed ~ ., data = longley))
 Forward  *varrank* analysis:
 
 ```{r}
-longley.varrank <- varrank(data.df = longley, method = "esteves", variable.important = "Employed", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
+longley.varrank <- varrank(data.df = longley, method = "estevez", variable.important = "Employed", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 longley.varrank
 plot(longley.varrank)
 ```
@@ -321,7 +321,7 @@ pairs(airquality, panel = panel.smooth, main = "Air Quality Data", gap = 0)
 Forward  *varrank* analysis
 
 ```{r}
-airquality.varrank <- varrank(data.df = (data.frame(lapply(airquality[complete.cases(airquality), ], as.numeric))), method = "esteves", variable.important = "Ozone", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
+airquality.varrank <- varrank(data.df = (data.frame(lapply(airquality[complete.cases(airquality), ], as.numeric))), method = "estevez", variable.important = "Ozone", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 airquality.varrank
 plot(airquality.varrank)
 ```

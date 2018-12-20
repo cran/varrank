@@ -95,7 +95,7 @@ data(PimaIndiansDiabetes)
 
 ##forward search for all variables
 out <- varrank(data.df = PimaIndiansDiabetes,
-  method = "esteves",
+  method = "estevez",
   variable.important = "diabetes",
   discretization.method = "sturges",
   algorithm = "forward",scheme="mid")

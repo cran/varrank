@@ -110,7 +110,7 @@ discretization <- function(data.df = NULL, discretization.method = "cencov", fre
     }
 
   ##===============================================================
-  ##Square root choice
+  ##cencov
   ##===============================================================
 
   if(discretization.method=="cencov"){
@@ -260,4 +260,12 @@ mi.data.discr <- function(X,Y){
   return(mi)
 }
 
+##------------------------------------------------------------------------------------
+## Table function for handling more than 2^31 elements
+## Function that returns optimized table
+##------------------------------------------------------------------------------------
+
+# table.varrank <- function(x){
+#
+# }
 ##EOF

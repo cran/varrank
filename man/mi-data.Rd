@@ -21,7 +21,7 @@ mi.data(X, Y, discretization.method=NULL, k=NULL)}
 
 \details{The mutual information estimation is computed from the observed frequencies through a plugin estimator based on entropy or using the estimator described in A. Kraskov, H. Stogbauer and P.Grassberger (2004) when the data frame is exclusively made of continuous variables.
 
-The plugin estimator is I(X, Y) = H (X) + H(Y) - H(X, Y), where H() is the entropy computed with \code{\link{entropy.data}}.}%mathmode?
+The plugin estimator is I(X, Y) = H (X) + H(Y) - H(X, Y), where H() is the entropy computed with \code{\link{entropy.data}}.}
 \value{Mutual information estimate.}
 
 \author{Gilles Kratzer}

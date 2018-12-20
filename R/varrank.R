@@ -6,7 +6,7 @@
 ##                 : 15/03/2018 code cleaning
 ###############################################################################
 
-varrank <- function(data.df = NULL, variable.important = NULL, method = c("battiti", "kwak", "peng", "esteves"), algorithm=c("forward","backward"), scheme=c("mid", "miq"), discretization.method = NULL, ratio=NULL,n.var=NULL, verbose=TRUE){
+varrank <- function(data.df = NULL, variable.important = NULL, method = c("battiti", "kwak", "peng", "estevez"), algorithm=c("forward","backward"), scheme=c("mid", "miq"), discretization.method = NULL, ratio=NULL,n.var=NULL, verbose=TRUE){
 
   ##Tests of common sense
 
@@ -19,14 +19,14 @@ varrank <- function(data.df = NULL, variable.important = NULL, method = c("batti
   scheme <- tolower(scheme)
   if(is.character(discretization.method)) discretization.method <- tolower(discretization.method)
 
-  method <- c("battiti", "kwak", "peng", "esteves")[pmatch(method,c("battiti", "kwak", "peng", "esteves"))]
+  method <- c("battiti", "kwak", "peng", "estevez")[pmatch(method,c("battiti", "kwak", "peng", "estevez"))]
   algorithm <- c("forward","backward")[pmatch(algorithm,c("forward","backward"))]
   discretization.method <- c("fd","doane","cencov","sturges","rice","scott","kmeans","terrell-scott")[pmatch(discretization.method,c("fd","doane","cencov","sturges","rice","scott","kmeans","terrell-scott"))]
 
   if(length(variable.important)<1)stop("A least one variable of importance should be given")
   if(dim(data.df)[2]<length(variable.important))stop("Misspecification of number of the data.frame and the variables of importance")
   if(dim(data.df)[1]<2)stop("Not enough observations to compute information theory metrics")
-  if(!(method %in% c("battiti", "kwak", "peng", "esteves")) & algorithm %in% c("forward")){method <- "peng" ; warning("Method not recognised; method assigned to peng")}
+  if(!(method %in% c("battiti", "kwak", "peng", "estevez")) & algorithm %in% c("forward")){method <- "peng" ; warning("Method not recognised; method assigned to peng")}
   if(is.null(algorithm) & length(n.var)==1){algorithm <- "forward"; warning("Algorithm not recognised; algorithm assigned to forward")}
 
   if(!(algorithm %in% c("forward","backward"))){stop("Algorithm not recognised")}

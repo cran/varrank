@@ -134,7 +134,7 @@ plot.varrank <- function(x,
     if(x.algo=="forward"){
         axis(1,
              1:n,
-             labels= rownames(x[n:1,]),
+             labels= rownames(x[1:n,]),
              las= 2,
              tick= 0,
              cex.axis= labelscex

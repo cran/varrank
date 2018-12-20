@@ -76,23 +76,23 @@ test_that("Test varrank()",{
 
   ##output format: forward:
 
-  expect_equal(length(varrank(data.df = longley, method = "esteves",variable.important = "Employed",discretization.method = "sturges",algorithm = "forward",scheme = "mid",verbose=FALSE)$ordered.var),6)
+  expect_equal(length(varrank(data.df = longley, method = "estevez",variable.important = "Employed",discretization.method = "sturges",algorithm = "forward",scheme = "mid",verbose=FALSE)$ordered.var),6)
 
-  expect_equal(length(varrank(data.df = longley, method = "esteves",variable.important = "Employed",discretization.method = "fd",algorithm = "forward",n.var = 3,scheme = "mid",verbose=FALSE)$ordered.var),3)
+  expect_equal(length(varrank(data.df = longley, method = "estevez",variable.important = "Employed",discretization.method = "fd",algorithm = "forward",n.var = 3,scheme = "mid",verbose=FALSE)$ordered.var),3)
 
-  expect_equal(length(varrank(data.df = longley, method = "esteves",variable.important = "Employed",discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = 2,verbose=FALSE)$ordered.var),2)
+  expect_equal(length(varrank(data.df = longley, method = "estevez",variable.important = "Employed",discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = 2,verbose=FALSE)$ordered.var),2)
 
-  expect_equal(length(varrank(data.df = longley, method = "esteves",variable.important = "Employed",discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = 1,verbose=FALSE)$ordered.var),1)
+  expect_equal(length(varrank(data.df = longley, method = "estevez",variable.important = "Employed",discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = 1,verbose=FALSE)$ordered.var),1)
 
   expect_equal(length(varrank(data.df = longley, method = "peng",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = 1,verbose=FALSE)$ordered.var),1)
 
-  expect_equal(length(varrank(data.df = longley, method = "esteves",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = NULL,verbose=FALSE)$ordered.var),5)
+  expect_equal(length(varrank(data.df = longley, method = "estevez",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = NULL,verbose=FALSE)$ordered.var),5)
 
-  expect_equal(dim(varrank(data.df = longley, method = "esteves",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = NULL,verbose=FALSE)$distance.m),c(5,5))
+  expect_equal(dim(varrank(data.df = longley, method = "estevez",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = NULL,verbose=FALSE)$distance.m),c(5,5))
 
-  expect_equal(dim(varrank(data.df = longley, method = "esteves",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = 2,verbose=FALSE)$distance.m),c(5,2))
+  expect_equal(dim(varrank(data.df = longley, method = "estevez",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = 2,verbose=FALSE)$distance.m),c(5,2))
 
-  out<-varrank(data.df = longley, method = "esteves",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = NULL,verbose=FALSE)
+  out<-varrank(data.df = longley, method = "estevez",variable.important = c("Employed","Year"),discretization.method = "cencov",algorithm = "forward",scheme = "mid",n.var = NULL,verbose=FALSE)
 
   expect_equal(out$ordered.var,colnames(out$distance.m))
 

@@ -16,7 +16,7 @@ library(varrank)
 
 data(PimaIndiansDiabetes, package = "mlbench")
 
-varrank.PimaIndiansDiabetes <- varrank(data.df = PimaIndiansDiabetes, method = "esteves", variable.important = "diabetes", discretization.method = "sturges", algorithm = "forward", scheme="mid", verbose = FALSE)
+varrank.PimaIndiansDiabetes <- varrank(data.df = PimaIndiansDiabetes, method = "estevez", variable.important = "diabetes", discretization.method = "sturges", algorithm = "forward", scheme="mid", verbose = FALSE)
 
 summary(varrank.PimaIndiansDiabetes)
 
@@ -121,7 +121,7 @@ pairs(swiss, panel = panel.smooth, main = "Swiss Data",
 summary(lm(Fertility ~ . , data = swiss))
 
 ## ------------------------------------------------------------------------
-swiss.varrank <- varrank(data.df = swiss, method = "esteves", variable.important = "Fertility", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
+swiss.varrank <- varrank(data.df = swiss, method = "estevez", variable.important = "Fertility", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 swiss.varrank
 plot(swiss.varrank)
 
@@ -130,7 +130,7 @@ pairs(longley, main = "Longley Data", gap = 0)
 summary(fm1 <- lm(Employed ~ ., data = longley))
 
 ## ------------------------------------------------------------------------
-longley.varrank <- varrank(data.df = longley, method = "esteves", variable.important = "Employed", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
+longley.varrank <- varrank(data.df = longley, method = "estevez", variable.important = "Employed", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 longley.varrank
 plot(longley.varrank)
 
@@ -138,7 +138,7 @@ plot(longley.varrank)
 pairs(airquality, panel = panel.smooth, main = "Air Quality Data", gap = 0)
 
 ## ------------------------------------------------------------------------
-airquality.varrank <- varrank(data.df = (data.frame(lapply(airquality[complete.cases(airquality), ], as.numeric))), method = "esteves", variable.important = "Ozone", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
+airquality.varrank <- varrank(data.df = (data.frame(lapply(airquality[complete.cases(airquality), ], as.numeric))), method = "estevez", variable.important = "Ozone", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 airquality.varrank
 plot(airquality.varrank)
 

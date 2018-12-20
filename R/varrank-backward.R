@@ -60,7 +60,7 @@ varrank.backward <- function(data.df = NULL, variable.important = NULL, method =
                battiti={alpha=1},
                kwak={alpha=mi.data.discr(X = data.df.tmp.i,Y = data.df.tmp.s[,names.selected[z]])/(10^-6+entropy.data(freqs.table = table(data.df[,names.selected[z]])))},
                peng={alpha=1},
-               esteves={alpha = 1/(min(entropy.data(freqs.table = table(data.df.tmp.s[,i])),entropy.data(freqs.table = table(data.df.tmp.s[,-i])))+10^-6)}
+               estevez={alpha = 1/(min(entropy.data(freqs.table = table(data.df.tmp.s[,i])),entropy.data(freqs.table = table(data.df.tmp.s[,-i])))+10^-6)}
         )
 
         tmp.sum <- tmp.sum + alpha * tmp
@@ -71,7 +71,7 @@ varrank.backward <- function(data.df = NULL, variable.important = NULL, method =
              battiti={beta=ratio},
              kwak={beta=ratio},
              peng={beta=1/(length(names.selected)+1)},
-             esteves={beta=1/(length(names.selected)+1)}
+             estevez={beta=1/(length(names.selected)+1)}
       )
 
       vect.redundancy[i,] <- beta * tmp.sum
