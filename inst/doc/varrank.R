@@ -13,9 +13,7 @@ options(digits = 3)
 library(varrank)
 
 ## ---- warning = FALSE, message = FALSE-----------------------------------
-
 data(PimaIndiansDiabetes, package = "mlbench")
-
 varrank.PimaIndiansDiabetes <- varrank(data.df = PimaIndiansDiabetes, method = "estevez", variable.important = "diabetes", discretization.method = "sturges", algorithm = "forward", scheme="mid", verbose = FALSE)
 
 summary(varrank.PimaIndiansDiabetes)
@@ -143,43 +141,10 @@ airquality.varrank
 plot(airquality.varrank)
 
 ## ------------------------------------------------------------------------
-data(nassCDS, package = "DAAG")
+data(nassCDS)
 
 nassCDS.varrank <- varrank(data.df = nassCDS, method = "peng", variable.important = "dead", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 nassCDS.varrank
 
 plot(nassCDS.varrank, notecex = 0.5)
-
-## ------------------------------------------------------------------------
-data(epi, package = "psych")
-
-epi.varrank <- varrank(data.df = data.frame(lapply(epi[complete.cases(epi), ], as.factor)), method = "peng", variable.important = c("V6", "V12", "V18", "V24", "V30", "V36", "V42", "V48", "V54"), discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
-
-##example of custom plot using gplots
-cool <- rainbow(50, start = rgb2hsv(col2rgb("cyan"))[1], end = rgb2hsv(col2rgb("blue"))[1])
-warm <- rainbow(50, start = rgb2hsv(col2rgb("red"))[1], end = rgb2hsv(col2rgb("yellow"))[1])
-cols <- c(rev(cool), rev(warm))
-mypalette <- colorRampPalette(cols)(100)
-
-require(gplots)
-heatmap.2(epi.varrank$distance.m, sepcolor = "white", 
-          margins = c(3, 3), 
-          Rowv = FALSE, 
-          Colv = FALSE , 
-          trace = "none", col = mypalette, 
-          #distfun = distCor, 
-          #hclustfun = hclustAvg, 
-          dendrogram = "none", 
-          RowSideColors = c("grey", "grey", "black", "grey", "grey", "grey", "black", "grey", "grey", "black", "black", "grey", "grey", "black", "grey", "grey", "black", "grey", "black", "black", "black", "black", "grey", "grey", " grey", "grey", "black", "black", "black", "black", "grey", "grey", "black", "grey", "black", "black", "grey", "black", "grey", "black", "black", "grey", "grey", "black", "grey", "black", "black", "black"), 
-          key.title = "", 
-          key.xlab = "Redundancy       Relevancy", density.info = "density", denscol = "black")
-
-par(lend = 0)           # square line ends for the color legend
-legend("topright",     # location of the legend on the heatmap plot
-       legend = c("Extrovert score", "Neurotic score"), # category labels
-       col = c("grey", "black"), # color key
-       lty = 1,            # line style
-       lwd = 10            # line width
-)
-
 

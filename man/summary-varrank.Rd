@@ -33,6 +33,8 @@
 \author{Gilles Kratzer}
 
 \examples{
+if (requireNamespace("mlbench", quietly = TRUE)) {
+
 library(mlbench)
 data(PimaIndiansDiabetes)
 
@@ -46,5 +48,5 @@ varrank.output <- varrank(data.df = PimaIndiansDiabetes,
 ##Print summary output of varrank object
 
 summary(varrank.output)
-
+}
 }

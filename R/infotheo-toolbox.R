@@ -24,12 +24,20 @@ discretization <- function(data.df = NULL, discretization.method = "cencov", fre
 
   #tests:
 
-  if(is.character(discretization.method)) discretization.method <- tolower(discretization.method)
+  if(is.character(discretization.method)) {
+    discretization.method <- tolower(discretization.method)
 
-  if(is.character(discretization.method)) discretization.method <- c("fd","doane","cencov","sturges","rice","scott","kmeans","terrell-scott")[pmatch(discretization.method,c("fd","doane","cencov","sturges","rice","scott","kmeans","terrell-scott"))]
 
-  if(!(discretization.method %in% c("fd","doane","cencov","sturges","rice","scott","kmeans","terrell-scott") | is.numeric(discretization.method))){stop("Wrong definition of the discretization.method's parameter")}
+  discretization.method <- c("fd","doane","cencov","sturges","rice","scott","kmeans","terrell-scott")[pmatch(discretization.method,c("fd","doane","cencov","sturges","rice","scott","kmeans","terrell-scott"))]
+  if ( (is.na(discretization.method)) || (length(discretization.method)>1) ){
+    discretization.method <- "cencov"
+    warning("Discretization method not recognised; set to 'cencov'")}
+} else {
+  if (!is.numeric(discretization.method) || discretization.method < 2 )
+    stop("For equal binning, discretization.method (as numeric) >=2 is required.")
 
+  #if(!(discretization.method %in% c("fd","doane","cencov","sturges","rice","scott","kmeans","terrell-scott") | is.numeric(discretization.method))){stop("Wrong definition of the discretization.method's parameter")}
+}
   ##end of tests
 
   data.df <- as.data.frame(data.df)

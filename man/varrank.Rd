@@ -25,7 +25,7 @@ varrank(data.df = NULL, variable.important = NULL, method =
   \item{scheme}{the scheme search to be used. \code{"mid"} and \code{"miq"} stands for the Mutual Information Difference and Quotient schemes, respectively. Those are two ways to combine the relevance and redundancy. They are the two most used mRMRe schemes}
   \item{discretization.method}{a character vector giving the discretization method to use. See \code{\link{discretization}}.}
   \item{ratio}{parameter to be used in \code{"battiti"} and \code{"kwak"}.}
-  \item{n.var}{number of variables to be returned}
+  \item{n.var}{number of variables to be returned.}
   \item{verbose}{logical. Should a progress bar be plotted? As the search scheme.}
   }
 
@@ -57,21 +57,23 @@ The search algorithm implemented are a forward search i.e. start with an empty s
 
 \author{Gilles Kratzer}
 
-\references{Kratzer, G. Furrer, R.  "varrank: an R package for variable ranking based on mutual information with applications to system epidemiology"}
+\references{Kratzer, G. and Furrer, R.  "varrank: an R package for variable ranking based on mutual information with applications to system epidemiology"}
 
 \examples{
+
+if (requireNamespace("mlbench", quietly = TRUE)) {
 library(mlbench)
 data(PimaIndiansDiabetes)
 
 ##forward search for all variables
-varrank(data.df = PimaIndiansDiabetes,
+out1 <- varrank(data.df = PimaIndiansDiabetes,
   method = "estevez",
   variable.important = "diabetes",
   discretization.method = "sturges",
   algorithm = "forward", scheme = "mid")
 
 ##forward search for 3 variables
-varrank(data.df = PimaIndiansDiabetes,
+out2 <- varrank(data.df = PimaIndiansDiabetes,
   method = "estevez",
   variable.important = "diabetes",
   discretization.method = "sturges",
@@ -80,12 +82,13 @@ varrank(data.df = PimaIndiansDiabetes,
   n.var=3)
 
 ##backward search for all variables
-varrank(data.df = PimaIndiansDiabetes,
+out3 <- varrank(data.df = PimaIndiansDiabetes,
   method = "peng",
   variable.important = "diabetes",
   discretization.method = "sturges",
   algorithm = "backward",
   scheme = "mid",
   n.var=NULL)
+  }
 
 }

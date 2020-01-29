@@ -90,6 +90,7 @@ This \code{plot} method for \code{varrank} objects provides an
 \author{Gilles Kratzer}
 
 \examples{
+if (requireNamespace("mlbench", quietly = TRUE)) {
 library(mlbench)
 data(PimaIndiansDiabetes)
 
@@ -105,5 +106,5 @@ plot(x = out)
 
 ##typical plot for high dimensional datasets
 plot(x = out, colsep = FALSE, rowsep = FALSE, cellnote = FALSE)
-
+}
 }

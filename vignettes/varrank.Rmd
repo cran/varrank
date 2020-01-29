@@ -3,6 +3,7 @@ title: "varrank: An R Package for Variable Ranking Based on Mutual Information w
 author: "Gilles Kratzer, Reinhard Furrer"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+#output: pdf_document
 vignette: >
   %\VignetteIndexEntry{varrank}
   %\VignetteEngine{knitr::knitr}
@@ -54,9 +55,7 @@ Let us start with a ranking example from the *mlbench* R package [@leischmlbench
 For the first search, it is advised to use either "peng" (faster) or "estevez" (more reliable but much slower for large datasets) and, in case the number of variables is large (>100), restrict the "forward" search to "n.var = 100." The progress bar will give you an idea of the remaining run time.
 
 ```{r, warning = FALSE, message = FALSE}
-
 data(PimaIndiansDiabetes, package = "mlbench")
-
 varrank.PimaIndiansDiabetes <- varrank(data.df = PimaIndiansDiabetes, method = "estevez", variable.important = "diabetes", discretization.method = "sturges", algorithm = "forward", scheme="mid", verbose = FALSE)
 
 summary(varrank.PimaIndiansDiabetes)
@@ -328,53 +327,15 @@ plot(airquality.varrank)
 
 ### Airbags and other influences on accident fatalities
 
-This is US data (1997-2002) from police-reported car crashes in which there was a harmful event (people or property) and from which at least one vehicle was towed. This dataset [@maindonald2014daag] contains 15 variables with 26'217 observations. The *varrank* forward search is performed using "peng"" model.
+This is US data (1997-2002) from police-reported car crashes in which there was a harmful event (people or property) and from which at least one vehicle was towed. This dataset [@maindonald2014daag] contains 15 variables with 26'217 observations. The *varrank* forward search is performed using "peng" model.
 
 ```{r}
-data(nassCDS, package = "DAAG")
+data(nassCDS)
 
 nassCDS.varrank <- varrank(data.df = nassCDS, method = "peng", variable.important = "dead", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 nassCDS.varrank
 
 plot(nassCDS.varrank, notecex = 0.5)
-```
-
-### Eysenck Personality Inventory (EPI)
-
-The EPI dataset from the *psych* R package [@revelle2014psych] contains 57 variables measuring two broad dimensions, Extraversion-Introversion and Stability-Neuroticism. This dataset contains 3570 observations collected in the early 1990s at the Personality, Motivation and Cognition lab at Northwestern. For the sake of example, the *varrank* anaylsis uses variable "V1" as the variable of importance and uses the "peng" method.
-
-```{r}
-data(epi, package = "psych")
-
-epi.varrank <- varrank(data.df = data.frame(lapply(epi[complete.cases(epi), ], as.factor)), method = "peng", variable.important = c("V6", "V12", "V18", "V24", "V30", "V36", "V42", "V48", "V54"), discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
-
-##example of custom plot using gplots
-cool <- rainbow(50, start = rgb2hsv(col2rgb("cyan"))[1], end = rgb2hsv(col2rgb("blue"))[1])
-warm <- rainbow(50, start = rgb2hsv(col2rgb("red"))[1], end = rgb2hsv(col2rgb("yellow"))[1])
-cols <- c(rev(cool), rev(warm))
-mypalette <- colorRampPalette(cols)(100)
-
-require(gplots)
-heatmap.2(epi.varrank$distance.m, sepcolor = "white", 
-          margins = c(3, 3), 
-          Rowv = FALSE, 
-          Colv = FALSE , 
-          trace = "none", col = mypalette, 
-          #distfun = distCor, 
-          #hclustfun = hclustAvg, 
-          dendrogram = "none", 
-          RowSideColors = c("grey", "grey", "black", "grey", "grey", "grey", "black", "grey", "grey", "black", "black", "grey", "grey", "black", "grey", "grey", "black", "grey", "black", "black", "black", "black", "grey", "grey", " grey", "grey", "black", "black", "black", "black", "grey", "grey", "black", "grey", "black", "black", "grey", "black", "grey", "black", "black", "grey", "grey", "black", "grey", "black", "black", "black"), 
-          key.title = "", 
-          key.xlab = "Redundancy       Relevancy", density.info = "density", denscol = "black")
-
-par(lend = 0)           # square line ends for the color legend
-legend("topright",     # location of the legend on the heatmap plot
-       legend = c("Extrovert score", "Neurotic score"), # category labels
-       col = c("grey", "black"), # color key
-       lty = 1,            # line style
-       lwd = 10            # line width
-)
-
 ```
 
 # Bibliography
