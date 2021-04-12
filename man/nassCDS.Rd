@@ -52,11 +52,11 @@ are restricted in other ways also.}
 }
 
 \source{
-  \url{http://www.stat.colostate.edu/~meyer/airbags.htm}\\
-  \url{ftp://ftp.nhtsa.dot.gov/nass/}
+  \url{https://www.stat.colostate.edu/~meyer/airbags.htm}
+%  \url{ftp://ftp.nhtsa.dot.gov/nass/}
 
 See also\\
-\url{http://www.maths.anu.edu.au/~johnm/datasets/airbags}
+\url{https://maths-people.anu.edu.au/~johnm/datasets/airbags/}
 }
 \references{
   Meyer, M.C. and Finney, T. (2005): \emph{Who wants airbags?}. Chance

@@ -1,4 +1,4 @@
-## ----setup, include = FALSE, cache = FALSE-------------------------------
+## ----setup, include = FALSE, cache = FALSE------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE, 
   comment = "#>", 
@@ -6,22 +6,22 @@ knitr::opts_chunk$set(
 )
 options(digits = 3)
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  install.packages("varrank")
 
-## ----eval=TRUE-----------------------------------------------------------
+## ----eval=TRUE----------------------------------------------------------------
 library(varrank)
 
-## ---- warning = FALSE, message = FALSE-----------------------------------
+## ---- warning = FALSE, message = FALSE----------------------------------------
 data(PimaIndiansDiabetes, package = "mlbench")
 varrank.PimaIndiansDiabetes <- varrank(data.df = PimaIndiansDiabetes, method = "estevez", variable.important = "diabetes", discretization.method = "sturges", algorithm = "forward", scheme="mid", verbose = FALSE)
 
 summary(varrank.PimaIndiansDiabetes)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 plot(varrank.PimaIndiansDiabetes)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(caret)
 library(e1071)
 # prepare training scheme
@@ -35,25 +35,25 @@ print(importance)
 # plot importance
 plot(importance)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(Boruta)
 out.boruta <- Boruta(diabetes~., data = PimaIndiansDiabetes)
 print(out.boruta)
 plot(out.boruta, cex.axis = 0.8, las=1)
 
-## ---- warning = FALSE, message = FALSE-----------------------------------
+## ---- warning = FALSE, message = FALSE----------------------------------------
 library(varSelRF)
 
 rf <- randomForest(diabetes~., data = PimaIndiansDiabetes, ntree = 200, importance = TRUE)
 rf.rvi <- randomVarImpsRF(xdata = PimaIndiansDiabetes[, 1:8], Class = PimaIndiansDiabetes[, 9], forest = rf, numrandom = 20, usingCluster = FALSE)
 randomVarImpsRFplot(rf.rvi, rf, show.var.names = TRUE, cexPoint = 0.3,cex.axis=0.3)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(FSelector)
 weights <- information.gain(diabetes~., data = PimaIndiansDiabetes)
-row.names(weights)[order(weights, decreasing = TRUE)]
+row.names(weights)[order(weights$attr_importance, decreasing = TRUE)]
 
-## ---- fig.width = 3, fig.height = 3--------------------------------------
+## ---- fig.width = 3, fig.height = 3-------------------------------------------
 ### 1D example ####
 # sample from continuous uniform distribution
 x1 = runif(1000)
@@ -78,7 +78,7 @@ x2 <- runif(100)
 ## Theoretical entropy: 2*log(100) = 9.21
 entropy.data(freqs.table = table(discretization(data.df = data.frame(x1, x2), discretization.method = "sturges", freq = FALSE)))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # mutual information for 2 uniform random variables
 x1 <- runif(10000)
 x2 <- runif(10000)
@@ -94,7 +94,7 @@ mi.data(X = x2, Y = x2, discretization.method = "kmeans")
 ##MI(x,x) = 2 * H(x) - H(x,x) 
 2 * entropy.data(freqs.table = table(discretization(data.df = data.frame(x2), discretization.method = "kmeans", freq = FALSE))) - entropy.data(freqs.table = table(discretization(data.df = data.frame(x2, x2), discretization.method = "kmeans", freq = FALSE)))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 output <- varrank(data.df = PimaIndiansDiabetes, method = "battiti", variable.important = "diabetes", discretization.method = "sturges", ratio = 0.6, algorithm = "forward", scheme="mid", verbose = FALSE)
 
 ##print
@@ -103,44 +103,44 @@ output
 ##summary
 summary(output)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 output <- varrank(data.df = PimaIndiansDiabetes, method = "battiti", variable.important = "diabetes", discretization.method = "sturges", ratio = 0.6, algorithm = "forward", scheme="mid", verbose = FALSE)
 
 plot(output)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 output<-varrank(data.df = PimaIndiansDiabetes, method = "battiti", variable.important = "diabetes", discretization.method = "sturges", ratio = 0.6, algorithm = "backward",scheme="mid", verbose = FALSE)
 
 plot(output)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 pairs(swiss, panel = panel.smooth, main = "Swiss Data", 
       col = 3 + (swiss$Catholic > 80), gap = 0)
 summary(lm(Fertility ~ . , data = swiss))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 swiss.varrank <- varrank(data.df = swiss, method = "estevez", variable.important = "Fertility", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 swiss.varrank
 plot(swiss.varrank)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 pairs(longley, main = "Longley Data", gap = 0)
 summary(fm1 <- lm(Employed ~ ., data = longley))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 longley.varrank <- varrank(data.df = longley, method = "estevez", variable.important = "Employed", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 longley.varrank
 plot(longley.varrank)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 pairs(airquality, panel = panel.smooth, main = "Air Quality Data", gap = 0)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 airquality.varrank <- varrank(data.df = (data.frame(lapply(airquality[complete.cases(airquality), ], as.numeric))), method = "estevez", variable.important = "Ozone", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)
 airquality.varrank
 plot(airquality.varrank)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 data(nassCDS)
 
 nassCDS.varrank <- varrank(data.df = nassCDS, method = "peng", variable.important = "dead", discretization.method = "sturges", algorithm = "forward", scheme = "mid", verbose = FALSE)

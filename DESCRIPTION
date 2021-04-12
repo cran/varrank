@@ -2,7 +2,7 @@ Package: varrank
 Type: Package
 Title: Heuristics Tools Based on Mutual Information for Variable
         Ranking
-Version: 0.3
+Version: 0.4
 Authors@R: c(person("Gilles", "Kratzer", role = c("aut", "cre"),
              email = "gilles.kratzer@math.uzh.ch",
              comment = c(ORCID = "0000-0002-5929-8935")),
@@ -17,13 +17,13 @@ Encoding: UTF-8
 License: GPL-3
 LazyData: true
 Suggests: Boruta, FSelector, caret, e1071, mlbench, psych, varSelRF,
-        gplots, entropy, testthat, knitr
+        gplots, entropy, testthat, knitr, markdown
 URL: https://www.math.uzh.ch/pages/varrank/
 Imports: stats, FNN, grDevices
 Depends: R (>= 3.5.0)
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
 NeedsCompilation: no
-Packaged: 2020-01-29 16:53:31 UTC; Kratzer
+Packaged: 2021-04-12 09:31:50 UTC; Kratzer
 Repository: CRAN
-Date/Publication: 2020-01-29 19:50:02 UTC
+Date/Publication: 2021-04-12 16:50:02 UTC

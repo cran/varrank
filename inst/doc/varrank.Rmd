@@ -121,7 +121,7 @@ The *FSelector* R package [@romanski2016fselector] contains a large number of im
 ```{r}
 library(FSelector)
 weights <- information.gain(diabetes~., data = PimaIndiansDiabetes)
-row.names(weights)[order(weights, decreasing = TRUE)]
+row.names(weights)[order(weights$attr_importance, decreasing = TRUE)]
 ```
 
 # Underlying Theory of *varrank* 
