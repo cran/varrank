@@ -1,4 +1,4 @@
-cc3d25dcda4baee987d9d96e8d509c1c *DESCRIPTION
+c94e53e9935f2724d155612f9bb059ec *DESCRIPTION
 86185e3b9726cb373937c3f704c6d22d *NAMESPACE
 c955a512c2798385e44489bf51f2e4bd *NEWS.md
 c06ccd72229a0a466472fc95e7d935ce *R/infotheo-toolbox.R
@@ -9,12 +9,12 @@ d894434e4d114f4503c050163104a81e *R/print-varrank.R
 5d30fe5cb341726a3e15c3cee8764846 *R/varrank-backward.R
 095320e11d69ba37954ea9d74a2c3b3c *R/varrank-forward.R
 68d163f7a9c5c0a157d9e5eda4caeaf7 *R/varrank.R
-26f96b868d674511548bd1c80661c1b4 *build/vignette.rds
+7f8c7443bad97548ef4faf1598af8a2a *build/vignette.rds
 4bf15c0d4c87d55e83d821f8e1ce1b94 *data/nassCDS.rda
-7a476405ee465fed5b16dacba1042ea1 *inst/CITATION
+56e6fa9dcf376043ecaabce3b1c3357b *inst/CITATION
 1026f87cf2bc5a99cea7bd4044d9ac75 *inst/doc/varrank.R
 416422c7df6ab60fb6fc8ba3ce8e656d *inst/doc/varrank.Rmd
-16d6d1e6ab28483cac70adb7fd09a670 *inst/doc/varrank.html
+f3fde0bdeb8ec73c2512e52f9ec0d68a *inst/doc/varrank.html
 711425d1ab41ba37108d822043ddf6a6 *man/discretization.Rd
 7098e084909508e30a94b7f22333e588 *man/entropy-data.Rd
 f56a92df7ad713c5e4e8ac81d9b26fba *man/mi-data.Rd
